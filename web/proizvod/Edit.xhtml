@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"           
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Bojana's Pharmacy</title>
+    </h:head>
+    <body>
+        <link rel ="stylesheet" href="../css/style.css"/>
+        <ui:include src="../template/header.xhtml"/>
+        <div class='box'>
+            <h:form>
+                <h1>Izmenite info</h1>
+                <div class='textbox'>		
+                    <h:inputText id="marka" value="#{proizvodController.selected.naziv}"  required="true" requiredMessage="#{bundle.EditProizvodRequiredMessage_naziv}"/>                
+                </div>
+                <div class='textbox'>		
+                    <h:inputText id="model" value="#{proizvodController.selected.proizvodjac}"  required="true" requiredMessage="#{bundle.EditProizvodRequiredMessage_proizvodjac}"/>
+                </div>
+                <div class='textbox'>		
+                    <h:inputText converter="javax.faces.Double" id="cena" value="#{proizvodController.selected.cena}"  required="true" requiredMessage="#{bundle.EditProizvodRequiredMessage_cena}"/>
+                </div>
+
+                <div class='textbox'>		
+                    <h:inputText converter="javax.faces.Double" id="tezina" value="#{proizvodController.selected.tezina}"  required="true" requiredMessage="#{bundle.EditProizvodRequiredMessage_tezina}"/>
+
+                    <h:commandButton class="btn" type="submit" value="Izmeni" action="#{proizvodController.update}"/>
+            </h:form>
+        </div>
+    </body>
+</html>
+
+
+
+

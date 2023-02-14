@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"           
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Bojana's Pharmacy</title>
+    </h:head>
+    <body>
+        <link rel ="stylesheet" href="../css/style.css"/>
+        <ui:include src="../template/header.xhtml"/>
+        <h:form >
+            <div class="box">
+                <h1>Ulogujte se</h1>
+                <div class="textbox">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <h:inputText id="username" p:placeholder="Username*" value="#{korisnikController.username}" required="true" requiredMessage="#{bundle.CreateProizvodRequiredMessage_naziv}"/>
+                </div>
+                <div class="textbox">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    <h:inputText id="password" p:type="password" p:placeholder="Password*" value="#{korisnikController.password}" required="true" requiredMessage="#{bundle.CreateProizvodRequiredMessage_naziv}"/>
+                </div>
+                <h:commandButton class="btn" type="submit" value="Prijavi" action="#{korisnikController.login()}"/>             
+                <br/>
+                <br/>
+                <a href="registracija.php">Nemate nalog? Registrujte se</a>
+            </div>
+        </h:form>
+    </body></html>

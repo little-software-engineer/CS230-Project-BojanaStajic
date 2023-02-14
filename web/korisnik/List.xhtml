@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Bojana's Pharmacy</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <body>
+        <link rel ="stylesheet" href="../css/style.css"/>
+        <ui:include src="../template/header.xhtml"/>
+        <h:form >
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{korisnikController.items.rowCount > 0}">
+                <div class='podaciK'><h2>Podaci o korisnicima</h2></div>
+                <h:dataTable value="#{korisnikController.items}" style="width:25%; " var="item" border="0">
+                    <h:column>
+                        <div class='product'>
+                            <ul>
+                                <li>
+                                    <div class='product2'>
+                                        <h3>Ime i prezime: <h:outputText value="#{item.ime} "/> <h:outputText value="#{item.prezime}"/> </h3>
+                                        <p class='postavio'> Email: #{item.email}</p><br/>
+                                        <p class='postavio'> Username: #{item.username} </p><br/>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+        </h:form>
+        <div class="footer">
+            <p>&#169; CS230 - Bojana Stajić 4596</p>
+        </div>
+        <br />
+       
+    </body>
+</html>
+

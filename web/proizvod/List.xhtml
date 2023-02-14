@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Bojana's Pharmacy</title>
+    </h:head>
+    <body>
+        <link rel ="stylesheet" href="../css/style.css"/>
+        <ui:include src="../template/header.xhtml"/>
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{proizvodController.items.rowCount > 0}">
+                <div class='raspolozivo'><h2>Proizvodi ponuda</h2></div>
+                <c:choose>
+                    <c:when test="#{korisnikController.prijavljen!=null}"> 
+                        
+                    </c:when></c:choose>
+                <h:dataTable value="#{proizvodController.items}" style="width:25%; " var="item" border="0" >
+                    <h:column>
+                        <div class='product'>
+                            <ul>
+                                <li>
+                                    <div class='product2'>
+                                        <h3><h:outputText value="#{item.naziv} "/> </h3>
+                                        <p class='postavio2'> Tezina: #{item.tezina}</p><br/>
+                                        <h3><h:outputText value="#{item.proizvodjac} "/> </h3>
+                                        <p class='postavio'> Cena: #{item.cena}</p><br/>
+                                        <h:commandButton action="#{proizvodController.prepareView}" value="Pogledaj" class='pogledaj'  />
+                                        <c:choose>
+                                            <c:when test="#{korisnikController.prijavljen!=null}"> 
+                                                <h:commandButton class='kupi' action="#{porudzbinaController.poruci()}"  value='Kupi'/>
+                                                <c:choose>
+                                                    <c:when test="#{korisnikController.prijavljen.admin==1}">
+                                                        <h:commandButton class='obrisi'  action="#{proizvodController.destroy}" value='Obrisi'/>
+                                                        <h:commandButton class='izmeni' action="#{proizvodController.prepareEdit()}" value='Izmeni'/>
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+        </h:form>
+        <div class="footer">
+            <p>&#169; CS230 - Bojana Stajić 4596</p>
+        </div>
+        <br />
+    </body>
+</html>

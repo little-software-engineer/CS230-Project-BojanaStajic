@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"           
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <title>Bojana's Pharamacy</title>
+    </h:head>
+    <body>
+
+        <link rel ="stylesheet" href="../css/style.css"/>
+        <ui:include src="../template/header.xhtml"/>
+        <div class="box">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h1>Dodajte proizvod</h1>
+                <div class="textbox">
+                    <i class="fa fa-info" aria-hidden="true"></i>		
+                    <h:inputText id="marka" p:placeholder="Ime*" value="#{proizvodController.selected.naziv}" title="#{bundle.CreateProizvodTitle_naziv}" required="true" requiredMessage="#{bundle.CreateProizvodRequiredMessage_naziv}"/>
+                </div>
+                <div class="textbox">
+                    <i class="fa fa-lock" aria-hidden="true"></i>		
+                    <h:inputText id="model" p:placeholder="Tezina*" value="#{proizvodController.selected.tezina}" title="#{bundle.CreateProizvodTitle_tezina}" required="true" requiredMessage="#{bundle.CreateProizvodRequiredMessage_tezina}"/>
+                </div>
+                <div class="textbox">
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>		
+                    <h:inputText id="cena" p:placeholder="Cena*" value="#{proizvodController.selected.cena}" title="#{bundle.CreateProizvodTitle_cena}" required="true" requiredMessage="#{bundle.CreateProizvodRequiredMessage_cena}"/>
+                </div>
+              
+                <div class="textbox">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>		
+                    <h:inputText p:placeholder="Proizvodjac*" id="proizvodjac" value="#{proizvodController.selected.proizvodjac}" title="#{bundle.CreateProizvodTitle_proizvodjac}" required="true" requiredMessage="#{bundle.CreateProizvodRequiredMessage_proizvodjac}"/>
+                </div>
+                <h:commandButton class="btn" type="submit" value="Dodaj" action="#{proizvodController.create()}"/>
+            </h:form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charse="utf-8"/>
+        <title>Bojana's Pharmacy</title>
+
+        <link rel="shortcut icon" type="image/png" href="img\favicon.png"/>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </h:head>
+    <body>
+        <nav class="navBar">
+            <ul class="prt1">
+                <h:form>
+                    <c:choose>
+                        <c:when test="#{korisnikController.prijavljen==null}">
+                            <li><a class='logo' href='../logIn/login.xhtml'>Login</a></li>                        
+                        </c:when>
+                        <c:otherwise>
+                            <c:choose>
+                                <c:when test="#{korisnikController.prijavljen.admin==1}">
+                                    <li><h:commandLink class='logo' type="submit" action="#{korisnikController.logout()}" value="Odjavi se - #{korisnikController.prijavljen.ime} [Admin]"/></li>
+                                </c:when>
+                                <c:otherwise test="#{korisnikController.prijavljen.admin==0}">
+                                    <li><h:commandLink class='logo' type="submit" action="#{korisnikController.logout()}" value="Odjavi se - #{korisnikController.prijavljen.ime}"/></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
+                </h:form>
+            </ul>
+            <ul class="prt2">
+                <h:form>
+                    <li><a class="active" href="../pocetna/index.xhtml">Početna</a></li>
+                    <li><a href="../proizvod/List.xhtml">Proizvodi</a></li>
+
+
+                    <c:choose>
+                        <c:when test="#{korisnikController.prijavljen==null}">
+                            <li><a href='../korisnik/Create.xhtml'>Registruj se</a></li>
+                        </c:when>
+                        <c:otherwise>
+
+                        
+
+                            <c:choose>                           
+                                <c:when test="#{korisnikController.prijavljen.admin==1}">        
+                                    <li><a href='../korisnik/List.xhtml'>Korisnici</a></li>
+                                        <li><h:commandLink class='logo' type="submit" action="${proizvodController.dodaj()}" value="Dodaj Proizvod"/></li>                        
+                                </c:when>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
+                </h:form>
+            </ul>
+        </nav>		
+
+        <input type="checkbox" id="check"/>
+        <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+        </label>
+        <div class="sidebar">
+            <header>Bojana's Pharmacy</header>
+            <ul>
+                <li><a href="../pocetna/index.xhtml"><i class="fas fa-home"></i> Početna</a></li>
+                <li><a href="../proizvod/List.xhtml"><i class="fas fa-info"></i> Proizvodi</a></li>
+
+                <c:choose>
+                    <c:when test="#{korisnikController.prijavljen==null}">
+                        <li><a href='../korisnik/Create.xhtml'><i class='fas fa-user-plus'> Registruj se</i></a></li>
+                    </c:when>
+                    <c:otherwise>
+
+                        <c:choose>                           
+                            <c:when test="#{korisnikController.prijavljen.admin==1}">        
+                                <li><a href='../korisnik/List.xhtml'><i class="fas fa-users"> Korisnici</i></a></li>
+                            </c:when>
+                        </c:choose>
+                    </c:otherwise>
+                </c:choose>
+
+            </ul>
+        </div>		
+    </body>
+</html>
+

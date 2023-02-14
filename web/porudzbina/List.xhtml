@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Bojana's Pharmacy</title>
+    </h:head>
+    <body>
+
+        <link rel ="stylesheet" href="../css/style.css"/>
+        <ui:include src="../template/header.xhtml"/>
+        <h:form>
+
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{porudzbinaController.items.rowCount > 0}">
+
+                <div class='raspolozivo'><h2>Raspolozivi proizvodi</h2></div>
+
+
+                <h:dataTable value="#{porudzbinaController.items}" style="width:25%; " var="item" border="0" rules="none" >
+
+
+                    <h:column>
+                        <c:choose>
+                            <c:when test="#{item.korsnikId==korisnikController.prijavljen.korisnikId}"> 
+
+
+                                <div class='product'>
+
+                                    <ul>
+                                        <li>
+                                            <div class='product2'>
+                                                <h3><h:outputText value="#{item.korisnikId} "/> </h3>
+                                                <p class='postavio'> Cena: #{korisnikController.prijavljen.korisnikId}</p><br/>
+
+                                                <h:commandButton action="#{proizvodController.prepareView}" value="Pogledaj" class='pogledaj'  />
+
+                                                <c:choose>
+                                                    <c:when test="#{korisnikController.prijavljen!=null}"> 
+                                                        <h:commandButton class='kupi' action="#{porudzbinaController.create2()}"  value='Kupi'/>
+                                                        <c:choose>
+                                                            <c:when test="#{korisnikController.prijavljen.admin==1}">
+                                                                <h:commandButton class='obrisi'  action="#{porudzbinaController.destroy}" value='Obrisi'/>
+                                                                <h:commandButton class='izmeni' action="#{proizvodController.prepareEdit()}" value='Izmeni'/>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </c:when>
+                                                </c:choose>
+
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </c:when>
+                        </c:choose>
+
+                    </h:column>
+
+
+
+
+                </h:dataTable>
+            </h:panelGroup>
+        </h:form>
+        <div class="footer">
+            <p>&#169; CS230 - Bojana Stajić 4596</p>
+        </div>
+        <br />
+    </body>
+</html>
